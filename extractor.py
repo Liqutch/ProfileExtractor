@@ -10,7 +10,7 @@ import sys
 import os
 
 
-__version__ = "1.0"
+__version__ = "1.1"
 
 
 os.system('cls')
@@ -37,8 +37,8 @@ class EpicAccount:
         async with aiohttp.ClientSession() as session:
             async with session.request(
                 method="POST",
-                url="https://fngw-mcp-gc-livefn.ol.epicgames.com/"
-                f"fortnite/api/game/v2/profile/{self.account_id}/client/QueryProfile?profileId={profile}&rvn=-1",
+                url="https://fngw-mcp-gc-livefn.ol.epicgames.com"
+                f"/fortnite/api/game/v2/profile/{self.account_id}/client/QueryProfile?profileId={profile}&rvn=-1",
                 headers={"Authorization": f"bearer {self.access_token}", "Content-Type": "application/json"},
                 data=json.dumps({})
             ) as request:
@@ -94,12 +94,12 @@ class Extractor:
                 for profile in PROFILES:
                     response = await account.get_profile(profile=profile)
                     await self.save_profile_as_file(data=response["profileChanges"][0]["profile"], name=profile)
-                    log.info(f"{colorama.Fore.LIGHTBLUE_EX}{profile}{colorama.Style.RESET_ALL} profile has been successfully saved to the /{self.dir_name}/profile_{profile}.")
+                    log.info(f"{colorama.Fore.LIGHTBLUE_EX}{profile}{colorama.Style.RESET_ALL} profile has been successfully saved to the /{self.dir_name}/profile_{profile}.json")
             else:
                 log.info(f"Requesting for the {answers['profile']} profile...")
                 response = await account.get_profile(profile=answers['profile'])
                 await self.save_profile_as_file(data=response["profileChanges"][0]["profile"], name=answers['profile'])
-                log.info(f"{colorama.Fore.LIGHTBLUE_EX}{answers['profile']}{colorama.Style.RESET_ALL} profile has been successfully saved to the /{self.dir_name}/profile_{answers['profile']}.")
+                log.info(f"{colorama.Fore.LIGHTBLUE_EX}{answers['profile']}{colorama.Style.RESET_ALL} profile has been successfully saved to the /{self.dir_name}/profile_{answers['profile']}.json")
 
             choice = [inquirer.Confirm('download_again', message="Do you want to download another profile?",default=True)]
 
@@ -160,8 +160,6 @@ class Extractor:
                 },
                 data={"grant_type": "device_code", "device_code": code},
             ) as request:
-                token = await request.json()
-
                 if request.status == 200:
                     break
                 else:
@@ -169,28 +167,8 @@ class Extractor:
 
                 await asyncio.sleep(5)
 
-        async with self.http.request(
-            method="GET",
-            url="https://account-public-service-prod03.ol.epicgames.com/account/api/oauth/exchange",
-            headers={"Authorization": f"bearer {token['access_token']}"},
-        ) as request:
-            exchange = await request.json()
-
-        async with self.http.request(
-            method="POST",
-            url="https://account-public-service-prod03.ol.epicgames.com/account/api/oauth/token",
-            headers={
-                "Authorization": f"basic {IOS_TOKEN}",
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            data={
-                "grant_type": "exchange_code",
-                "exchange_code": exchange["code"],
-            },
-        ) as request:
-            auth_data = await request.json()
-
-            return EpicAccount(data=auth_data)
+        auth_data = await request.json()
+        return EpicAccount(data=auth_data)
 
     async def save_profile_as_file(self, data: dict = {}, name: str = "unknown") -> None:
         if not os.path.exists(self.dir_name):

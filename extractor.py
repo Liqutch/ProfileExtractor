@@ -161,13 +161,13 @@ class Extractor:
                 data={"grant_type": "device_code", "device_code": code},
             ) as request:
                 if request.status == 200:
+                    auth_data = await request.json()
                     break
                 else:
                     pass
 
                 await asyncio.sleep(5)
-
-        auth_data = await request.json()
+                
         return EpicAccount(data=auth_data)
 
     async def save_profile_as_file(self, data: dict = {}, name: str = "unknown") -> None:

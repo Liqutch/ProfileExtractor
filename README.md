@@ -1,6 +1,6 @@
 # ProfileExtractor
 Program to easily extract player profiles using Epic Games API. Made for personal use.
-
+<img src=".github/ProfileExtractorLogo.png" height="130" align="right"> 
 > Device code generation and some functions is based on xMistt's [DeviceAuthGenerator](https://github.com/xMistt/DeviceAuthGenerator) project. But this program does not generate any device auths. Retrieves the player profiles using the user's access token.
 
 After completing the authorization, select a player profile and the program will download it to the `/profiles` folder for you.

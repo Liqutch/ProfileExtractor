@@ -5,7 +5,7 @@ Program to easily extract player profiles using Epic Games API. Made for persona
 
 After completing the authorization, select a player profile and the program will download it to the `/profiles` folder for you.
 
-![image](https://github.com/Liqutch/ProfileExtractor/assets/113312256/33ec4126-d244-445e-8eda-41e79a52d845)
+![image](https://github.com/Liqutch/ProfileExtractor/assets/113312256/2fea463e-5f9a-4e5f-868c-023e48019b9b)
 
 # Usage
 1. Install the requirements _(only applies to the Python script, you don't need to install requirements for the executable)_.

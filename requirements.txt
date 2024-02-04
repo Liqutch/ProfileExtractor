@@ -2,5 +2,4 @@ coloredlogs
 colorama
 inquirer
 aiohttp
-pyperclip
 yarl

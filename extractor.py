@@ -94,12 +94,12 @@ class Extractor:
                 for profile in PROFILES:
                     response = await account.get_profile(profile=profile)
                     await self.save_profile_as_file(data=response["profileChanges"][0]["profile"], name=profile)
-                    log.info(f"{colorama.Fore.LIGHTBLUE_EX}{profile}{colorama.Style.RESET_ALL} profile has been successfully saved to the /{self.dir_name}/profile_{profile}.json")
+                    log.info(f"{colorama.Fore.LIGHTBLUE_EX}{profile}{colorama.Style.RESET_ALL} profile has been successfully saved to /{self.dir_name}/profile_{profile}.json")
             else:
                 log.info(f"Requesting for the {answers['profile']} profile...")
                 response = await account.get_profile(profile=answers['profile'])
                 await self.save_profile_as_file(data=response["profileChanges"][0]["profile"], name=answers['profile'])
-                log.info(f"{colorama.Fore.LIGHTBLUE_EX}{answers['profile']}{colorama.Style.RESET_ALL} profile has been successfully saved to the /{self.dir_name}/profile_{answers['profile']}.json")
+                log.info(f"{colorama.Fore.LIGHTBLUE_EX}{answers['profile']}{colorama.Style.RESET_ALL} profile has been successfully saved to /{self.dir_name}/profile_{answers['profile']}.json")
 
             choice = [inquirer.Confirm('download_again', message="Do you want to download another profile?",default=True)]
 

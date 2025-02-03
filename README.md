@@ -24,5 +24,5 @@ After completing the authorization, select a player profile and the program will
 If you have a problem, you can get help from the links below.
 
 [![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/users/341886629142593537)
-[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/Liqutch)
+[![Twitter](https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/Liqutch)
 [![Website](https://img.shields.io/badge/🔗%20LIQUTCH.DEV-white.svg?style=for-the-badge&logo=link&logoColor=black&color=EDF2F7)](https://liqutch.dev)
